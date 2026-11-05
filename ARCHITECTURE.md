@@ -162,7 +162,7 @@ Installing CUDA-accelerated machine learning packages through standard PyPI comm
 (JA + EN Checkpoints + STT)                 (JA + STT Only | Save ~500 MB)
 ```
 
-1. **Hardware Inspection:** Probes the Win32 registry and `nvidia-smi` prior to importing PyTorch. Evaluates total VRAM; systems with $\ge 3.75\text{ GB}$ dedicated VRAM qualify for CUDA Tensor Core mode.
+1. **Hardware Inspection:** Probes the Win32 registry and `nvidia-smi` prior to importing PyTorch. Evaluates total VRAM; systems with ≥ 3.75 GB dedicated VRAM qualify for CUDA Tensor Core mode.
 2. **Isolated PyTorch Wheel Indexing:** PyTorch 2.5.1 is explicitly installed *first* with its dedicated index URL (`https://download.pytorch.org/whl/cu121` or `https://download.pytorch.org/whl/cpu`) before `requirements.txt` is evaluated. When `requirements.txt` runs, the same index URL is passed as `--extra-index-url`, preventing pip from downgrading torch.
 
 ### 3.3 CPU Mode Optimization & RAM Lockdown (`lock_hardware_config()`)

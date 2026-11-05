@@ -169,7 +169,8 @@ Amadeus can generate, edit, and inspect local images and documents directly from
 
 ### System Requirements
 * **Operating System:** Windows 11 (64-bit) exclusively.
-* **CPU:** Minimum 6 physical CPU cores (Intel with $\ge 2$ P-cores or AMD equivalent).
+* **CPU:** Minimum 6 physical CPU cores (Intel with ≥ 2 P-cores or AMD equivalent).
+* **GPU:** Minimum 4 GB VRAM (NVIDIA CUDA).
 * **RAM:** Minimum 8 GB RAM (16 GB recommended).
 * **Disk Space:** ~5 GB free storage for runtimes, voice models, and dependencies.
 
@@ -225,8 +226,8 @@ Once `agy` is installed and verified, you are ready to run the installer!
 
 | Hardware Tier | Engine Mode | Voice Synthesizer Setup | Spoken Output Latency |
 | :--- | :--- | :--- | :--- |
-| **NVIDIA CUDA GPU**<br>*( $\ge$ 4 GB VRAM)* | Full Bilingual Mode | • Japanese: SBV2 44.1 kHz (DeBERTa-v2)<br>• English: SBV2 44.1 kHz (DeBERTa-v3) | Low latency (GPU Tensor Core accelerated) |
-| **CPU Only**<br>*( $\ge$ 6 cores)* | Optimized Japanese Mode (`"ja_only": true`) | • Japanese: SBV2 44.1 kHz (INT8 Quantized)<br>• English Voice: Skipped to save ~1.5 GB RAM | Higher synthesis latency on CPU; conversational text remains 100% English |
+| **NVIDIA CUDA GPU**<br>*(≥ 4 GB VRAM)* | Full Bilingual Mode | • Japanese: SBV2 44.1 kHz (DeBERTa-v2)<br>• English: SBV2 44.1 kHz (DeBERTa-v3) | Low latency (GPU Tensor Core accelerated) |
+| **CPU Only**<br>*(≥ 6 cores)* | Optimized Japanese Mode (`"ja_only": true`) | • Japanese: SBV2 44.1 kHz (INT8 Quantized)<br>• English Voice: Skipped to save ~1.5 GB RAM | Higher synthesis latency on CPU; conversational text remains 100% English |
 
 ### Voice Routing & Focus-Gating
 * **CPU RAM Optimization:** On CPU-only systems, `install.py` locks `"ja_only": true`. This bypasses the heavy English DeBERTa model, saving ~1.5 GB RAM and keeping synthesis responsive. Kurisu speaks in Japanese while providing full English text and subtitles in the chat feed.
