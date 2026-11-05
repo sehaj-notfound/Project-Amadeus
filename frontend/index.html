@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Amadeus — Makise Kurisu Workstation</title>
+  <link rel="stylesheet" href="/src/style.css">
+</head>
+<body>
+  <div class="ambient-glow"></div>
+
+  <!-- ════════ STARTUP OVERLAY & WORKSPACE ONBOARDING ════════ -->
+  <div id="startupOverlay" class="startup-overlay">
+    <audio id="startupAudio" loop></audio>
+    
+    <!-- Glowing Amber 'Neural A' Monogram Background -->
+    <div class="startup-monogram-container">
+      <svg class="neural-a-logo" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="amberGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffb700" />
+            <stop offset="50%" stop-color="#ff8c00" />
+            <stop offset="100%" stop-color="#b32d3a" />
+          </linearGradient>
+          <filter id="amberGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="6" result="blur" />
+            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+          </filter>
+        </defs>
+        <!-- Outer Neural Ring -->
+        <circle cx="100" cy="100" r="88" stroke="url(#amberGrad)" stroke-width="2" stroke-dasharray="8 6" opacity="0.6" />
+        <circle cx="100" cy="100" r="95" stroke="#ff8c00" stroke-width="1" stroke-opacity="0.3" />
+        <!-- Neural A Glyph Lines -->
+        <path d="M100 28 L42 165" stroke="url(#amberGrad)" stroke-width="6" stroke-linecap="round" filter="url(#amberGlow)" />
+        <path d="M100 28 L158 165" stroke="url(#amberGrad)" stroke-width="6" stroke-linecap="round" filter="url(#amberGlow)" />
+        <path d="M64 122 L136 122" stroke="url(#amberGrad)" stroke-width="5" stroke-linecap="round" filter="url(#amberGlow)" />
+        <path d="M78 95 L122 95" stroke="#ff8c00" stroke-width="2" stroke-dasharray="3 3" opacity="0.8" />
+        <!-- Central Diamond Synapse -->
+        <polygon points="100,58 116,95 100,116 84,95" fill="none" stroke="url(#amberGrad)" stroke-width="2.5" />
+        <circle cx="100" cy="95" r="4" fill="#ffb700" filter="url(#amberGlow)" />
+        <!-- Neural Nodes -->
+        <circle cx="100" cy="28" r="5" fill="#ffb700" />
+        <circle cx="42" cy="165" r="5" fill="#b32d3a" />
+        <circle cx="158" cy="165" r="5" fill="#b32d3a" />
+        <circle cx="64" cy="122" r="4" fill="#ff8c00" />
+        <circle cx="136" cy="122" r="4" fill="#ff8c00" />
+        <line x1="100" y1="28" x2="100" y2="58" stroke="#ff8c00" stroke-width="2" stroke-dasharray="2 2" opacity="0.7" />
+        <line x1="100" y1="116" x2="100" y2="155" stroke="#b32d3a" stroke-width="2" opacity="0.6" />
+      </svg>
+    </div>
+
+    <!-- Header Branding -->
+    <header class="startup-header">
+      <div class="startup-brand-badge">
+        <span class="startup-pulse-indicator"></span>
+        <span class="startup-brand-title">AMADEUS KURISU OS v0.1</span>
+        <span class="startup-divergence-val">// DIVERGENCE: 1.048596%</span>
+      </div>
+      <div class="startup-brand-subtitle">Viktor Chondria University • Brain Science Institute Replica</div>
+    </header>
+
+    <!-- Central Interactive Dynamic Cards Container -->
+    <main class="startup-central-card">
+      
+      <!-- Stage 1: Loading Progress -->
+      <section class="startup-stage-pane" id="startupStageLoading">
+        <div class="startup-stage-tag">SYSTEM BOOTSTRAP</div>
+        <h2 class="startup-stage-title">INITIALIZING NEURAL SUBSYSTEMS</h2>
+        <p class="startup-stage-status" id="startupLoadingStatusText">Verifying model assets...</p>
+        
+        <div class="startup-progress-bar-wrap">
+          <div class="startup-progress-bar-fill" id="startupProgressBarFill" style="width: 0%;"></div>
+        </div>
+        <div class="startup-progress-percent" id="startupProgressPercent">0%</div>
+
+        <!-- Stage 1 Error Card (hidden until error) -->
+        <div class="startup-error-card hidden" id="startupStageLoadingError">
+          <div class="error-card-header">
+            <span class="error-badge-icon">⚠️</span>
+            <span class="error-card-title">SUBSYSTEM INITIALIZATION ERROR</span>
+          </div>
+          <div class="startup-error-box" id="startupLoadingErrorText"></div>
+          <div class="startup-stage-actions">
+            <button id="startupRetryLoadingBtn" class="startup-btn primary">🔄 Retry Initialization</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stage 2: Workspace Selection -->
+      <section class="startup-stage-pane hidden" id="startupStageWorkspace">
+        <h2 class="startup-stage-title">SELECT OPERATIONAL WORKSPACE</h2>
+        <p class="startup-stage-desc">Please select a workspace</p>
+
+        <div class="startup-cards-grid">
+          <!-- Card 1: Default Workspace -->
+          <div class="startup-workspace-card" id="btnDefaultWorkspace">
+            <div class="workspace-card-icon">🏠</div>
+            <div class="workspace-card-info">
+              <div class="workspace-card-title">Default Workspace</div>
+              <div class="workspace-card-desc">use for normal, every day chit;chat</div>
+            </div>
+            <button class="startup-btn primary" type="button" tabindex="-1">Launch Default</button>
+          </div>
+
+          <!-- Card 2: Custom Workspace -->
+          <div class="startup-workspace-card" id="btnCustomWorkspace">
+            <div class="workspace-card-icon">📂</div>
+            <div class="workspace-card-info">
+              <div class="workspace-card-title">Custom Workspace Directory</div>
+              <div class="workspace-card-desc">Select a Project Folder</div>
+            </div>
+            <button class="startup-btn secondary" type="button" tabindex="-1">Choose Folder...</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stage 3A: Trust Check Modal -->
+      <section class="startup-stage-pane hidden" id="startupStageTrust">
+        <div class="startup-stage-tag">SECURITY BOUNDARY // TRUST CHECK</div>
+        <h2 class="startup-stage-title">DO YOU TRUST THIS DIRECTORY?</h2>
+        <p class="startup-stage-desc">
+          Project Amadeus operates with autonomous subagents, tool use, and shell execution capabilities. Do you trust the authors of files in this directory?
+        </p>
+        <div class="startup-folder-chip" id="startupTrustFolderPath">C:\path\to\workspace</div>
+        <div class="startup-stage-actions">
+          <button id="startupTrustYesBtn" class="startup-btn primary">Yes, Trust &amp; Proceed</button>
+          <button id="startupTrustNoBtn" class="startup-btn secondary">No, Choose Another Workspace</button>
+        </div>
+      </section>
+
+      <!-- Stage 3B: GEMINI.md Warning Card -->
+      <section class="startup-stage-pane hidden" id="startupStageGeminiConflict">
+        <div class="startup-stage-tag warning-tag">ENVIRONMENT NOTICE // LOCAL GEMINI.MD DETECTED</div>
+        <h2 class="startup-stage-title warning-title">LOCAL INSTRUCTION CONFLICT CHECK</h2>
+        <div class="startup-warning-box">
+          <span class="warning-icon">⚠️</span>
+          <span>A local <code>GEMINI.md</code> configuration was detected in this folder. Antigravity will ingest its directives, which may modify or augment Amadeus's cognitive persona.</span>
+        </div>
+        <div class="startup-folder-chip" id="startupGeminiFolderPath">C:\path\to\workspace</div>
+        <div class="startup-stage-actions">
+          <button id="startupGeminiDismissBtn" class="startup-btn primary">Dismiss &amp; Launch</button>
+          <button id="startupGeminiCancelBtn" class="startup-btn secondary">Choose Another Folder</button>
+        </div>
+      </section>
+
+      <!-- Stage 4: Spawning / Launching Spinner & Error Card -->
+      <section class="startup-stage-pane hidden" id="startupStageLaunching">
+        <div id="startupLaunchingSpinnerBox" class="startup-launching-box">
+          <div class="startup-neural-spinner"></div>
+          <h2 class="startup-stage-title">SPAWNING AMADEUS AGENT...</h2>
+          <p class="startup-launching-desc" id="startupLaunchingDesc">Connecting to headless agy CLI runner...</p>
+        </div>
+
+        <div id="startupStageWorkspaceError" class="startup-workspace-error-card hidden">
+          <div class="error-card-header">
+            <span class="error-badge-icon">⚠️</span>
+            <span class="error-card-title">WORKSPACE INITIALIZATION FAILED</span>
+          </div>
+          <div class="startup-error-box" id="startupWorkspaceErrorText"></div>
+          <div class="startup-stage-actions">
+            <button id="startupWorkspaceRetryBtn" class="startup-btn primary">🔄 Retry Launch</button>
+            <button id="startupWorkspaceChangeBtn" class="startup-btn secondary">📂 Choose Another Workspace</button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer: Temporal Quotes Ticker & Music Toggle -->
+    <footer class="startup-footer">
+      <div class="temporal-quote-container" id="temporalQuoteBox">
+        <div class="quote-fader" id="quoteFader">
+          <div class="quote-header-row">
+            <span class="quote-divergence-meter" id="quoteDivergenceMeter">[1.048596%]</span>
+            <span class="quote-author" id="quoteAuthor"></span>
+          </div>
+          <p class="quote-text" id="quoteText"></p>
+        </div>
+      </div>
+      <div class="startup-footer-actions">
+        <button id="startupAudioToggleBtn" class="startup-audio-btn" type="button" title="Toggle Background Music">🔊 Music: ON</button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Responsive Three-Column Workstation Layout -->
+  <div class="workstation-layout" id="workstationLayout">
+    
+    <!-- ════════ COLUMN 1: NAVIGATION SIDEBAR ════════ -->
+    <aside class="sidebar-col" id="sidebarCol">
+      <div class="sidebar-header">
+        <div class="sidebar-brand">
+          <div class="brand-top">
+            <div class="status-dot"></div>
+            <span class="brand-title">AMADEUS</span>
+            <span class="divergence-tag">1.048596%</span>
+          </div>
+          <div class="brand-sub">Viktor Chondria Univ. Replica</div>
+        </div>
+        <button class="collapse-sidebar-btn" id="collapseSidebarBtn" title="Collapse Sidebar">◀</button>
+      </div>
+
+      <button class="new-chat-btn" id="newChatBtn">
+        <span class="btn-icon">＋</span> New Chat
+      </button>
+
+      <button class="search-chats-btn" id="searchChatsBtn">
+        <span class="btn-icon">🔍</span> Search Chats
+      </button>
+
+      <div class="section-divider"></div>
+
+      <div class="chat-history-section">
+        <div class="section-title">CHAT HISTORY</div>
+        <div class="history-list" id="historyList">
+          <!-- Dynamically populated from SQLite DB -->
+        </div>
+      </div>
+
+      <div class="sidebar-footer">
+        <button class="tool-btn" id="workspaceBtn" title="Current Workspace Directory">
+          <span class="tool-icon">📁</span>
+          <span class="tool-label" id="workspaceLabel">Workspace; default workspace</span>
+        </button>
+        <button class="tool-btn" id="settingsBtn" title="System Settings & Steins;Gate Divergence">
+          <span class="tool-icon">⚙️</span>
+          <span class="tool-label">Settings</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- ════════ COLUMN 2: ACTIVE CONVERSATION (CHAT FEED) ════════ -->
+    <main class="chat-col">
+      <header class="chat-topbar">
+        <div class="topbar-left">
+          <button class="expand-sidebar-btn hidden" id="expandSidebarBtn" title="Open Sidebar">☰</button>
+          <span class="session-heading" id="sessionHeading">New Chat</span>
+        </div>
+        <div class="topbar-right">
+          <!-- Dynamic Model Selector on the top right -->
+          <div class="model-picker-wrapper topbar-model-picker">
+            <button class="model-topbar-btn" id="modelBtn" title="Select Cognitive Brain Engine">
+              <span class="model-pulse-dot"></span>
+              <span class="model-btn-label" id="activeModelLabel">Gemini 3.8 Flash (Low)</span>
+              <span class="model-chevron">▼</span>
+            </button>
+            <div class="model-menu hidden" id="modelMenu">
+              <div class="model-menu-title">COGNITIVE ENGINES</div>
+              <div class="model-list" id="modelList"></div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Scrollable Message Transcript -->
+      <div class="chat-feed-scroll" id="chatFeed">
+        <!-- Initial Welcome Message from Amadeus -->
+        <div class="msg-card amadeus">
+          <div class="msg-header">
+            <span class="speaker-tag">Amadeus</span>
+            <span class="timestamp">18:24</span>
+            <button class="copy-response-btn" title="Copy whole response">Copy Response</button>
+          </div>
+          <div class="msg-body">
+            What are you staring at? If you have something worth my time, say it quickly. I have research to finish.
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Chat Input Bar -->
+      <div class="chat-input-area" id="chatInputContainer">
+        <!-- Floating '@' File Mention Autocomplete Popup -->
+        <div id="fileMentionPopup" class="file-mention-popup hidden">
+          <div class="file-mention-header">
+            <span class="file-mention-title">WORKSPACE FILES</span>
+            <span class="file-mention-count" id="fileMentionCount">0 files</span>
+          </div>
+          <div class="file-mention-list" id="fileMentionList"></div>
+        </div>
+        <div id="attachmentStagingTray" class="attachment-staging-tray" style="display: none;">
+          <div class="staging-items-container" id="stagingItemsContainer"></div>
+          <div class="staging-token-bar"><span id="stagingTokenCount">Estimated Attachment Tokens: 0 / 75,000</span></div>
+        </div>
+        <div class="chat-input-row">
+          <button id="attachFileBtn" class="attach-btn" title="Attach files (Max 5, up to 15MB)" type="button">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </button>
+          <input type="file" multiple id="attachmentFileInput" style="display: none;" />
+          <div class="input-glow-box" id="chatInputWrapper">
+            <button id="micBtn" class="mic-action-btn" title="Click to speak (Click again to finish & edit)">
+              <span class="mic-icon">🎙️</span>
+            </button>
+            <textarea
+              id="chatInput"
+              placeholder="Type a message or click 🎙️ to speak..."
+              rows="1"
+            ></textarea>
+            <button id="sendBtn" class="send-action-btn" title="Send (Enter)">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="input-info-strip">
+          <span class="info-shortcuts">Enter to send • Shift+Enter for newline • Click 🎙️ to record voice (pastes into box without auto-sending)</span>
+        </div>
+      </div>
+    </main>
+
+    <!-- ════════ COLUMN 3: MAKISE KURISU AVATAR PANEL ════════ -->
+    <aside class="avatar-col">
+      <!-- Steins;Gate 0 Digital Server Void Backdrop Container -->
+      <div class="server-void-stage" id="serverVoidStage">
+        <div class="void-grid-overlay"></div>
+        <div class="void-scanlines"></div>
+        <!-- PixiJS Avatar Canvas -->
+        <div id="stageWrapper" class="stage-canvas-container"></div>
+        <button class="avatar-mute-btn" id="avatarMuteBtn" title="Mute Voice" aria-label="Toggle Kurisu Voice Mute">
+          <svg class="mute-mic-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path class="mic-body" d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/>
+            <path class="mic-arc" d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+            <line class="mic-stand" x1="12" y1="19" x2="12" y2="22"/>
+            <line class="mic-base" x1="8" y1="22" x2="16" y2="22"/>
+            <line class="mute-slash" x1="4" y1="4" x2="20" y2="20"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Avatar Operations Footer -->
+      <div class="avatar-footer-telemetry">
+        <button class="open-inspector-btn" id="openInspectorBtn" title="Open Detailed Operations & Telemetry Inspector">
+          <span class="inspector-btn-glow"></span>
+          <span class="inspector-btn-icon">↗</span>
+          <span class="inspector-btn-text">DETAILED OPERATIONS // INSPECTOR</span>
+        </button>
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- Future Gadget Lab Themed Modal Overlay -->
+  <div class="amadeus-modal-overlay hidden" id="amadeusModalOverlay">
+    <div class="amadeus-modal-box">
+      <div class="amadeus-modal-header">
+        <div class="amadeus-modal-tag">AMADEUS // PROTOCOL OVERRIDE</div>
+        <div class="amadeus-modal-title" id="amadeusModalTitle">CONFIRM ACTION</div>
+      </div>
+      <div class="amadeus-modal-body">
+        <p class="amadeus-modal-message" id="amadeusModalMessage"></p>
+        <div class="amadeus-modal-input-wrap hidden" id="amadeusModalInputWrap">
+          <input type="text" class="amadeus-modal-input" id="amadeusModalInput" autocomplete="off" spellcheck="false" />
+          <textarea class="amadeus-modal-textarea hidden" id="amadeusModalTextarea" autocomplete="off" spellcheck="false" rows="6" placeholder="Edit your prompt..."></textarea>
+          <!-- Floating '@' Mention Autocomplete Popup for Edit Modal -->
+          <div id="modalMentionPopup" class="file-mention-popup modal-mention-popup hidden">
+            <div class="file-mention-header">
+              <span class="file-mention-title">WORKSPACE FILES</span>
+              <span class="file-mention-count" id="modalMentionCount">0 items</span>
+            </div>
+            <div class="file-mention-list" id="modalMentionList"></div>
+          </div>
+        </div>
+      </div>
+      <div class="amadeus-modal-actions">
+        <span class="modal-hint-text hidden" id="amadeusModalHintText">Ctrl + Enter to confirm</span>
+        <button class="amadeus-modal-btn cancel" id="amadeusModalCancelBtn">CANCEL</button>
+        <button class="amadeus-modal-btn confirm" id="amadeusModalConfirmBtn">CONFIRM</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Subagent Kill & Session Restart Loading Overlay -->
+  <div class="amadeus-modal-overlay hidden" id="subagentKillLoadingOverlay">
+    <div class="amadeus-modal-box" style="text-align: center; max-width: 420px; padding: 24px;">
+      <div class="amadeus-modal-header" style="justify-content: center; border-bottom: none; margin-bottom: 12px;">
+        <div class="amadeus-modal-tag" style="color: #ff4d4d; letter-spacing: 2px;">SYSTEM INTERRUPT // ATOMIC PURGE</div>
+      </div>
+      <div style="margin: 16px 0;">
+        <div class="status-spinner" style="width: 32px; height: 32px; margin: 0 auto 16px auto; border: 3px solid rgba(255, 140, 0, 0.2); border-top-color: #ff8c00; border-radius: 50%; animation: spin 0.8s linear infinite;"></div>
+        <div style="font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 8px;">Terminating Subagents...</div>
+        <p style="font-size: 12px; color: #8b949e; line-height: 1.5; margin: 0;">Purging running worker process tree and re-arming Amadeus session cleanly.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Steins;Gate Cyberpunk Detailed Operations Inspector Modal -->
+  <div class="detailed-modal-overlay hidden" id="detailedModalOverlay">
+    <div class="detailed-modal-window">
+      <!-- Modal Header -->
+      <div class="detailed-modal-header">
+        <div class="modal-header-left">
+          <div class="modal-sys-tag">AMADEUS // SYSTEM TELEMETRY &amp; OPERATIONS INSPECTOR</div>
+          <div class="modal-header-controls-row">
+            <div class="modal-tabs-strip">
+              <button class="modal-tab-btn active" data-tab="diffs" id="tabBtnDiffs">
+                <span class="tab-icon">📝</span> File Diffs
+                <span class="tab-badge" id="diffsCountBadge">0</span>
+              </button>
+              <button class="modal-tab-btn" data-tab="terminal" id="tabBtnTerminal">
+                <span class="tab-icon">⚡</span> Terminal
+                <span class="tab-badge" id="commandsCountBadge">0</span>
+              </button>
+              <button class="modal-tab-btn" data-tab="tasks" id="tabBtnTasks">
+                <span class="tab-icon">⏳</span> Tasks
+                <span class="tab-badge" id="tasksCountBadge">0</span>
+              </button>
+              <button class="modal-tab-btn" data-tab="subagents" id="tabBtnSubagents">
+                <span class="tab-icon">🤖</span> Subagents
+                <span class="tab-badge" id="subagentsCountBadge">0</span>
+              </button>
+              <button class="modal-tab-btn" data-tab="usage" id="tabBtnUsage">
+                <span class="tab-icon">📊</span> Usage
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-header-right">
+          <button class="modal-close-btn" id="detailedModalCloseBtn" title="Close Modal (Esc)">✕</button>
+        </div>
+      </div>
+
+      <!-- Modal Body (Panels) -->
+      <div class="detailed-modal-body">
+        <!-- 1. Diffs Panel -->
+        <div class="modal-tab-pane active" id="paneDiffs">
+          <div class="pane-split-layout">
+            <aside class="pane-sidebar" id="diffFileList">
+              <div class="pane-sidebar-title">MODIFIED FILES</div>
+              <div class="file-list-items" id="diffFileListItems">
+                <div class="empty-state">No files modified in this session.</div>
+              </div>
+            </aside>
+            <main class="pane-content" id="diffFileContent">
+              <div class="diff-viewer-header">
+                <div class="diff-header-left">
+                  <span class="diff-current-file" id="diffCurrentFile">Select a file</span>
+                  <span class="diff-stats-badge" id="diffCurrentStats"></span>
+                </div>
+                <div class="diff-header-right">
+                  <button class="console-action-btn hidden" id="revealInExplorerBtn" title="Reveal in Windows Explorer">📁 Reveal in Explorer</button>
+                </div>
+              </div>
+              <div class="diff-code-wrapper" id="diffCodeWrapper">
+                <div class="empty-state">Select a modified file to view unified diff.</div>
+              </div>
+            </main>
+          </div>
+        </div>
+
+        <!-- 2. Terminal & Commands Panel -->
+        <div class="modal-tab-pane" id="paneTerminal">
+          <div class="pane-split-layout">
+            <aside class="pane-sidebar" id="commandHistoryList">
+              <div class="pane-sidebar-title">EXECUTED COMMANDS</div>
+              <div class="command-list-items" id="commandListItems">
+                <div class="empty-state">No commands executed yet.</div>
+              </div>
+            </aside>
+            <main class="pane-content" id="commandConsoleContent">
+              <div class="console-viewer-header">
+                <div class="console-cmd-title" id="consoleCmdTitle">Select a command</div>
+                <div class="console-header-actions">
+                  <span class="console-exit-badge" id="consoleExitBadge">READY</span>
+                  <button class="console-action-btn" id="copyConsoleBtn">Copy Output</button>
+                </div>
+              </div>
+              <pre class="console-output-box" id="consoleOutputBox">Select a command on the left to inspect stdout and stderr.</pre>
+            </main>
+          </div>
+        </div>
+
+        <!-- 3. Background Tasks Panel -->
+        <div class="modal-tab-pane" id="paneTasks">
+          <div class="pane-split-layout">
+            <aside class="pane-sidebar" id="tasksSidebar">
+              <div class="pane-sidebar-title">TASK QUEUE &amp; SCHEDULES</div>
+              <div class="task-list-items" id="taskListItems">
+                <div class="empty-state">No active or completed background tasks.</div>
+              </div>
+            </aside>
+            <main class="pane-content" id="taskDetailContent">
+              <div class="task-viewer-header">
+                <div class="task-meta-left">
+                  <span class="task-detail-id" id="taskDetailId">Select a task</span>
+                  <span class="task-detail-state" id="taskDetailState"></span>
+                </div>
+                <div class="task-header-actions">
+                  <button class="console-action-btn danger hidden" id="killTaskBtn" title="Terminate running task">⏹ Kill Task</button>
+                  <button class="console-action-btn" id="refreshTaskLogBtn">↻ Refresh Log</button>
+                </div>
+              </div>
+              <div class="task-prompt-box" id="taskPromptBox"></div>
+              <pre class="task-log-box" id="taskLogBox">Task execution logs will appear here...</pre>
+            </main>
+          </div>
+        </div>
+
+        <!-- 4. Subagents Panel -->
+        <div class="modal-tab-pane" id="paneSubagents">
+          <div class="pane-split-layout">
+            <aside class="pane-sidebar" id="subagentsSidebar">
+              <div class="pane-sidebar-title">DISPATCHED SUBAGENTS</div>
+              <div class="subagent-list-items" id="subagentListItems">
+                <div class="empty-state">No subagents dispatched in this session.</div>
+              </div>
+            </aside>
+            <main class="pane-content" id="subagentDetailContent">
+              <div class="subagent-viewer-header">
+                <div class="subagent-meta-left">
+                  <div class="subagent-meta-title" id="subagentMetaTitle">Select a subagent</div>
+                  <span class="subagent-meta-badge" id="subagentMetaBadge">IDLE</span>
+                </div>
+                <button class="console-action-btn danger hidden" id="killSubagentBtn" title="Stop subagents in this conversation">⏹ Stop Subagents</button>
+              </div>
+              <div class="subagent-prompt-box" id="subagentPromptBox"></div>
+              <div class="subagent-chat-feed" id="subagentChatFeed">
+                <div class="empty-state">Subagent operations and transcript will appear here.</div>
+              </div>
+            </main>
+          </div>
+        </div>
+
+        <!-- 5. Usage & Quota Panel -->
+        <div class="modal-tab-pane" id="paneUsage">
+          <div class="usage-pane-container">
+            <div class="usage-pane-header">
+              <div class="usage-header-left">
+                <div class="usage-title-row">
+                  <span class="usage-main-title">ACCOUNT USAGE &amp; QUOTA LIMITS</span>
+                </div>
+                <p class="usage-desc-text">Shared weekly and 5-hour rolling limits across model families.</p>
+              </div>
+              <div class="usage-header-right">
+                <button class="console-action-btn" id="refreshQuotaBtn" title="Refresh Usage Quota">↻ Refresh Quota</button>
+              </div>
+            </div>
+            <div class="usage-cards-grid" id="usageCardsGrid">
+              <div class="empty-state">Loading quota data...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ CHAT ARCHIVE SEARCH MODAL ════════ -->
+  <div class="chat-search-modal-overlay hidden" id="chatSearchModalOverlay">
+    <div class="chat-search-modal">
+      <div class="search-modal-header">
+        <div class="search-header-left">
+          <span class="search-title-icon">🔍</span>
+          <span class="search-title-text">Search Transcripts & Past Chats</span>
+        </div>
+        <button class="modal-close-btn" id="chatSearchCloseBtn" title="Close Search (Esc)">✕</button>
+      </div>
+
+      <div class="search-input-box">
+        <span class="search-input-icon">🔍</span>
+        <input
+          type="text"
+          id="chatSearchInput"
+          placeholder="Type a word or phrase to search all conversations..."
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <button class="clear-search-btn hidden" id="clearSearchBtn" title="Clear Search">✕</button>
+      </div>
+
+      <div class="search-status-bar">
+        <span class="search-status-text" id="searchStatusText">Showing all past conversations</span>
+        <span class="search-count-badge" id="searchCountBadge">0</span>
+      </div>
+
+      <div class="search-results-list" id="searchResultsList">
+        <!-- Dynamically rendered search match cards or past conversation cards -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════ IMAGE LIGHTBOX MODAL ════════ -->
+  <div id="imageLightboxModal" class="image-lightbox-modal" style="display: none;">
+    <div class="lightbox-backdrop"></div>
+    <div class="lightbox-content">
+      <button id="lightboxCloseBtn" class="lightbox-close-btn">&times;</button>
+      <img id="lightboxImg" src="" alt="Full view" />
+      <div id="lightboxCaption" class="lightbox-caption"></div>
+      <button id="lightboxRevealBtn" class="lightbox-reveal-btn" style="display: none;">📁 Reveal in Explorer</button>
+    </div>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

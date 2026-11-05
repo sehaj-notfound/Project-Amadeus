@@ -1,0 +1,45 @@
+# Executable Binaries (Distributed via Releases zip, not Git)
+Amadeus.exe
+*.exe
+
+# Python & Virtual Environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+*.log
+
+# Audio & Media Exclusions (Official copyrighted assets)
+s;g0.mp3
+*.mp3
+*.wav
+
+# CLI Binaries & Old Backups
+bin/
+agy.exe
+*.old
+
+# Heavy ML Weights (Downloaded dynamically by install.py from Hugging Face)
+*.safetensors
+models/
+models/sensevoice/*.onnx
+models/*.onnx
+models/*.bin
+for-hf/
+for-hf-cache/
+
+# Frontend Build Artifacts & Copyrighted Assets
+desktop/
+frontend/node_modules/
+frontend/dist/
+frontend/src-tauri/target/
+frontend/public/avatar/sprites/*.png
+
+# Temporary / Scratch / IDE
+scratch/
+Test outputs/
+.idea/
+.vscode/
+*.tmp

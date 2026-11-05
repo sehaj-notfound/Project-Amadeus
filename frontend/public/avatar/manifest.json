@@ -1,0 +1,243 @@
+{
+  "version": "1.0.0",
+  "name": "Makise Kurisu (Amadeus)",
+  "source": "Steins;Gate 0 Canonical Visual Novel Sprites",
+  "basePath": "sprites/",
+  "defaultPose": "D",
+  "defaultEmotion": "neutral",
+  "mouthStates": {
+    "closed": "00",
+    "half": "01",
+    "open": "02"
+  },
+  "poses": {
+    "D": {
+      "name": "Resting Arms",
+      "description": "Standing forward with arms resting at sides"
+    },
+    "E": {
+      "name": "Crossed Arms",
+      "description": "Upper body 3/4 turn with arms crossed over chest"
+    },
+    "F": {
+      "name": "Back Turned",
+      "description": "Full back turned with long hair (sulking / walking away)"
+    }
+  },
+  "emotions": {
+    "neutral": {
+      "code": "01",
+      "pose": "D",
+      "description": "Calm intellectual forward gaze",
+      "frames": {
+        "closed": "CRS_JMD_40000100.png",
+        "half": "CRS_JMD_40000101.png",
+        "open": "CRS_JMD_40000102.png"
+      }
+    },
+    "teasing": {
+      "code": "02",
+      "pose": "D",
+      "description": "Wink with a playful smirk",
+      "frames": {
+        "closed": "CRS_JMD_40000200.png",
+        "half": "CRS_JMD_40000201.png",
+        "open": "CRS_JMD_40000202.png"
+      }
+    },
+    "angry": {
+      "code": "03",
+      "pose": "D",
+      "description": "Furrowed brow downward stern glare ('Christina' reflex)",
+      "frames": {
+        "closed": "CRS_JMD_40000300.png",
+        "half": "CRS_JMD_40000301.png",
+        "open": "CRS_JMD_40000302.png"
+      }
+    },
+    "tsundere": {
+      "code": "08",
+      "pose": "D",
+      "description": "Cheeks flushed bright pink, wide embarrassed eyes (flustered)",
+      "frames": {
+        "closed": "CRS_JMD_40000800.png",
+        "half": "CRS_JMD_40000801.png",
+        "open": "CRS_JMD_40000802.png"
+      },
+      "blinkFrames": {
+        "closed": "CRS_JMD_40000800_blink.png",
+        "half": "CRS_JMD_40000801_blink.png",
+        "open": "CRS_JMD_40000802_blink.png"
+      }
+    },
+    "flustered": {
+      "code": "08",
+      "pose": "D",
+      "description": "Cheeks flushed bright pink, wide embarrassed eyes",
+      "frames": {
+        "closed": "CRS_JMD_40000800.png",
+        "half": "CRS_JMD_40000801.png",
+        "open": "CRS_JMD_40000802.png"
+      },
+      "blinkFrames": {
+        "closed": "CRS_JMD_40000800_blink.png",
+        "half": "CRS_JMD_40000801_blink.png",
+        "open": "CRS_JMD_40000802_blink.png"
+      }
+    },
+    "tsundere_neutral": {
+      "code": "04",
+      "pose": "E",
+      "description": "Arms crossed over chest, 3/4 body turn, stubborn side-glare",
+      "frames": {
+        "closed": "CRS_JME_40000400.png",
+        "half": "CRS_JME_40000401.png",
+        "open": "CRS_JME_40000402.png"
+      }
+    },
+    "warm": {
+      "code": "06",
+      "pose": "D",
+      "description": "Eyes closed in gentle heartfelt sincere smile",
+      "frames": {
+        "closed": "CRS_JMD_40000600.png",
+        "half": "CRS_JMD_40000601.png",
+        "open": "CRS_JMD_40000602.png"
+      }
+    },
+    "serious": {
+      "code": "05",
+      "pose": "D",
+      "description": "Eyebrows angled upward in concern, melancholic demeanor",
+      "frames": {
+        "closed": "CRS_JMD_40000500.png",
+        "half": "CRS_JMD_40000501.png",
+        "open": "CRS_JMD_40000502.png"
+      }
+    },
+    "thinking": {
+      "code": "0a",
+      "pose": "D",
+      "description": "Eyes closed peacefully in contemplation / thinking sigh",
+      "frames": {
+        "closed": "CRS_JMD_40000a00.png",
+        "half": "CRS_JMD_40000a01.png",
+        "open": "CRS_JMD_40000a02.png"
+      }
+    },
+    "surprised": {
+      "code": "0b",
+      "pose": "D",
+      "description": "Eyes wide open in sudden epiphany or shock",
+      "frames": {
+        "closed": "CRS_JMD_40000b00.png",
+        "half": "CRS_JMD_40000b01.png",
+        "open": "CRS_JMD_40000b02.png"
+      }
+    },
+    "distressed": {
+      "code": "0c",
+      "pose": "D",
+      "description": "Sorrowful, vulnerable eyes, lips parted in distress",
+      "frames": {
+        "closed": "CRS_JMD_40000c00.png",
+        "half": "CRS_JMD_40000c01.png",
+        "open": "CRS_JMD_40000c02.png"
+      },
+      "blinkFrames": {
+        "closed": "CRS_JMD_40000c00_blink.png",
+        "half": "CRS_JMD_40000c01_blink.png",
+        "open": "CRS_JMD_40000c02_blink.png"
+      }
+    },
+    "skeptical": {
+      "code": "07",
+      "pose": "D",
+      "description": "Slight squint, suspicious / analytical gaze",
+      "frames": {
+        "closed": "CRS_JMD_40000700.png",
+        "half": "CRS_JMD_40000701.png",
+        "open": "CRS_JMD_40000702.png"
+      }
+    },
+    "neutral_crossed": {
+      "code": "01",
+      "pose": "E",
+      "description": "Arms crossed over chest, calm analytical gaze",
+      "frames": {
+        "closed": "CRS_JME_40000100.png",
+        "half": "CRS_JME_40000101.png",
+        "open": "CRS_JME_40000102.png"
+      }
+    },
+    "dismissive_hmph": {
+      "code": "07",
+      "pose": "E",
+      "description": "Arms crossed over chest, eyes closed in a dismissive 'hmph' sigh",
+      "frames": {
+        "closed": "CRS_JME_40000700.png",
+        "half": "CRS_JME_40000701.png",
+        "open": "CRS_JME_40000702.png"
+      }
+    },
+    "back_turned": {
+      "code": "00",
+      "pose": "F",
+      "description": "Full back turned with long hair (sulking or walking away)",
+      "frames": {
+        "closed": "CRS_JMF_00000001.png",
+        "half": "CRS_JMF_00000001.png",
+        "open": "CRS_JMF_00000001.png"
+      }
+    }
+  },
+  "compoundRules": [
+    {
+      "condition": ["tsundere", "neutral"],
+      "target": "tsundere_neutral",
+      "description": "Tsundere + neutral -> Crossed arms defensive pout (Pose E 04)"
+    },
+    {
+      "condition": ["tsundere", "warm"],
+      "target": "flustered",
+      "description": "Tsundere praise or warm embarrassment -> Blushing face"
+    },
+    {
+      "condition": ["tsundere", "angry"],
+      "target": "tsundere",
+      "description": "Tsundere + angry -> Crossed arms defensive pout"
+    },
+    {
+      "condition": ["teasing", "tsundere"],
+      "target": "teasing",
+      "description": "Playful teasing with tsundere undertones -> Winking smirk"
+    },
+    {
+      "condition": ["neutral", "serious"],
+      "target": "thinking",
+      "description": "Neutral + serious -> Contemplative thinking"
+    },
+    {
+      "condition": ["serious", "distressed"],
+      "target": "distressed",
+      "description": "High serious vulnerability -> Distressed face"
+    }
+  ],
+  "scales": {
+    "medium": {
+      "prefix": "CRS_JM",
+      "width": 663,
+      "height": 1274
+    },
+    "large": {
+      "prefix": "CRS_JL",
+      "width": 862,
+      "height": 1433
+    },
+    "small": {
+      "prefix": "CRS_JS",
+      "width": 454,
+      "height": 1150
+    }
+  }
+}
