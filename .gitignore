@@ -11,10 +11,11 @@ env/
 venv/
 *.log
 
-# Audio & Media Exclusions (Official copyrighted assets)
+# Audio & Media Exclusions (Official copyrighted assets & heavy videos)
 s;g0.mp3
 *.mp3
 *.wav
+*.mp4
 
 # CLI Binaries & Old Backups
 bin/
