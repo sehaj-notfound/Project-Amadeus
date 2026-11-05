@@ -22,6 +22,10 @@
   <a href="https://www.youtube.com/watch?v=lOu-S3KaoIY" target="_blank">
     <img src="https://img.youtube.com/vi/lOu-S3KaoIY/maxresdefault.jpg" alt="Project Amadeus Demonstration Video" width="100%" />
   </a>
+  <br />
+  <a href="https://www.youtube.com/watch?v=lOu-S3KaoIY" target="_blank">
+    <img src="https://img.shields.io/badge/▶_Watch_Demonstration_on_YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Watch Demonstration on YouTube" />
+  </a>
 </p>
 
 This demonstration highlights:
@@ -82,6 +86,10 @@ Amadeus is tuned with strict behavioral directives:
 <p align="center">
   <a href="https://www.youtube.com/watch?v=Gwm33gwr6Xc" target="_blank">
     <img src="https://img.youtube.com/vi/Gwm33gwr6Xc/maxresdefault.jpg" alt="Project Amadeus Subagents Demonstration Video" width="100%" />
+  </a>
+  <br />
+  <a href="https://www.youtube.com/watch?v=Gwm33gwr6Xc" target="_blank">
+    <img src="https://img.shields.io/badge/▶_Watch_Subagents_Demo_on_YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="Watch Subagents Demo on YouTube" />
   </a>
 </p>
 
