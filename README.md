@@ -37,7 +37,7 @@ This demonstration highlights:
 
 ## What is Project Amadeus?
 
-Inspired by the neuroscientific artificial intelligence system from *Steins;Gate 0*, **Project Amadeus** is a standalone, local-first Windows 11 desktop AI companion and workstation powered by the Google Antigravity CLI cognitive core.
+Inspired by the Amadeus artificial intelligence system from *Steins;Gate 0*, **Project Amadeus** is a standalone, local-first Windows 11 desktop AI companion and workstation powered by the Google Antigravity CLI cognitive core.
 
 Project Amadeus integrates three state-of-the-art local engines into a unified cybernetic companion:
 1. **Local Neural Speech Synthesis (Style-Bert-VITS2 44.1 kHz):** High-definition voice synthesis reproducing Makise Kurisu's canonical cadence across seven distinct emotional registers (`neutral`, `teasing`, `tsundere`, `angry`, `warm`, `serious`, `surprised`).
