@@ -290,7 +290,7 @@ CORRECT_TERMS_FOR_JAPANESE: Dict[str, str] = {
 }
 ```
 
-English G2P respellings are defined in `CORRECT_TERMS_FOR_ENGLISH` and `TECHNICAL_ACRONYMS` (e.g. `"Makise Kurisu"` $\rightarrow$ `"Makise Kurisoo"`, `"@channel"` $\rightarrow$ `"atchannel"`, `"SERN"` $\rightarrow$ `"S E R N"`, `"IBN"` $\rightarrow$ `"I B N"`).
+English G2P respellings are defined in `CORRECT_TERMS_FOR_ENGLISH` and `TECHNICAL_ACRONYMS` (e.g. `"Makise Kurisu"` → `"Makise Kurisoo"`, `"@channel"` → `"atchannel"`, `"SERN"` → `"S E R N"`, `"IBN"` → `"I B N"`).
 
 ### 4.7 Dynamic Subagents & Autonomous Delegation
 
@@ -351,8 +351,8 @@ English G2P respellings are defined in `CORRECT_TERMS_FOR_ENGLISH` and `TECHNICA
 High-frequency metallic ringing and vocoder buzzing are inherent to Bert-VITS2 checkpoints trained on visual novel and anime dub rips. Amadeus incorporates a dual-stage zero-phase IIR filter in `Codebase/tts_engine.py`:
 1. **English Filter Architecture:**
    * **Noise Clamping:** Truncated normal acoustic noise distribution clamped to `[-1.25, 1.25]`.
-   * **Stage A (Peaking Bandpass):** 2nd-order IIR peaking filter attenuating the harsh 2.5–4.5 kHz band by $-5.0\text{ dB}$ ($Q = 1.2$).
-   * **Stage B (Low-Pass Filter):** 4th-order Butterworth low-pass filter cutting off frequencies above $11.0\text{ kHz}$.
+   * **Stage A (Peaking Bandpass):** 2nd-order IIR peaking filter attenuating the harsh 2.5–4.5 kHz band by -5.0 dB (Q = 1.2).
+   * **Stage B (Low-Pass Filter):** 4th-order Butterworth low-pass filter cutting off frequencies above 11.0 kHz.
 2. **Japanese Filter Architecture:**
    * **Noise Clamping:** Truncated normal acoustic noise clamped to `[-1.75, 1.75]`.
    * **Manifold Projection:** $L_2$ norm bounding prevents vocoder saturation during continuous emotion transitions.
@@ -377,15 +377,15 @@ The subagent and background task lifecycle engine in `Codebase/amadeus_brain.py`
 ### 6.1 Subagent State Resolution Engine
 `_resolve_subagent_state()` inspects conversation transcripts and process metadata to resolve subagent lifecycle state:
 1. **Kill Check:** If `SUBAGENT_STATE_KILLED` is recorded in `.system_generated/subagents/<id>.json`, state resolves immediately to `"KILLED"`.
-2. **Server Restart Detection:** If the transcript records an Antigravity server restart notice (`source == "SYSTEM"`, `type == "SYSTEM_MESSAGE"`, `sender=system`, `[Notice] All your subagents and background tasks have been stopped due to server restart.`) where $\text{notice\_step} > \text{spawnStepIndex}$, the subagent resolves to `"DONE"`.
+2. **Server Restart Detection:** If the transcript records an Antigravity server restart notice (`source == "SYSTEM"`, `type == "SYSTEM_MESSAGE"`, `sender=system`, `[Notice] All your subagents and background tasks have been stopped due to server restart.`) where `notice_step > spawnStepIndex`, the subagent resolves to `"DONE"`.
 3. **Normal Completion:** A terminal planner response with 0 active tool calls and no running background tasks resolves to `"DONE"`.
 4. **Dialogue Tracking with `parent_turn_done`:** Active subagents communicating via `send_message` reflect `"WAITING"` until the parent finishes processing the message and concludes its turn (`parent_turn_done = True`), transitioning the subagent to `"DONE"`.
 
 ### 6.2 Task Status Detection
 Background task status is parsed directly from the first non-empty line of `steps/<idx>/output.txt`:
-* Exit code 0 or `"finished waiting"` $\rightarrow$ `COMPLETED`
-* String containing `"cancel"` $\rightarrow$ `CANCELLED`
-* Exit code $> 0$ $\rightarrow$ `FAILED`
+* Exit code 0 or `"finished waiting"` → `COMPLETED`
+* String containing `"cancel"` → `CANCELLED`
+* Exit code > 0 → `FAILED`
 
 ### 6.3 1:1 Key Mapping Architecture
 To prevent UI collisions across concurrent or parallel tool runs, operations are tracked with explicit unique keys:
@@ -498,7 +498,7 @@ Amadeus launches into an animated boot sequence (`#startupOverlay`):
 * **Multi-Channel Ingestion:** File picker button (`#attachFileBtn`), clipboard paste (`Ctrl+V`), and drag-and-drop.
 * **Precision Token Accounting:** Fast image header parsing calculates exact Gemini visual tiling tokens:
   $$\text{tokens} = 258 \times \left\lceil \frac{W}{768} \right\rceil \times \left\lceil \frac{H}{768} \right\rceil$$
-  Includes `tiktoken` BPE text accounting (`cl100k_base`), scanned PDF fallback ($\text{pages} \times 258$), audio duration tokens, and a live 75,000-token ceiling bar.
+  Includes `tiktoken` BPE text accounting (`cl100k_base`), scanned PDF fallback (pages × 258), audio duration tokens, and a live 75,000-token ceiling bar.
 * **Lightbox Modal (`#imageLightboxModal`):** High-resolution preview with `[📁 Reveal in Explorer]` powered by an in-memory image cache and Python Data URL bridge to bypass `file:///` CORS blocking.
 * **Multimodal Media Prepending:** Intercepts structured JSON `media` arrays from tool results, prepending formatted links (`![filename](uri)` for images, `[filename](uri)` for media) to Kurisu's next visual response.
 
