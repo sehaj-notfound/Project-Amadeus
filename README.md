@@ -11,7 +11,7 @@
 
 <p align="center">
   <a href="#system-requirements"><img src="https://img.shields.io/badge/Platform-Windows%2011%20(x64)-0078D4?style=flat-square&logo=windows11&logoColor=white" alt="Platform" /></a>
-  <a href="#prerequisites--1-click-quickstart"><img src="https://img.shields.io/badge/Runtime-Python%203.11%2B%20(.venv)%20%7C%20Tauri%20v2-3776AB?style=flat-square&logo=python&logoColor=white" alt="Runtime" /></a>
+  <a href="#prerequisites--1-click-quickstart"><img src="https://img.shields.io/badge/Runtime-Python%203.10%20(.venv)%20%7C%20Tauri%20v2-3776AB?style=flat-square&logo=python&logoColor=white" alt="Runtime" /></a>
   <a href="#prerequisites--1-click-quickstart"><img src="https://img.shields.io/badge/Tested%20on-Antigravity%20CLI%20v1.2.15-FF6F00?style=flat-square" alt="Antigravity CLI" /></a>
   <a href="#known-quirks--transparent-engineering-notes"><img src="https://img.shields.io/badge/Milestone-v0.1%20Foundation-10b981?style=flat-square" alt="Status" /></a>
 </p>
@@ -214,7 +214,7 @@ Project Amadeus requires the official Google Antigravity CLI (`agy`) as its reas
 Once `agy` is installed and verified, you are ready to run the installer!
 
 > [!NOTE]
-> **Zero Manual Git or Python Configuration Required:** The automated installer detects or downloads an isolated Python 3.11+ environment side-by-side without touching your system-wide Python or PATH settings.
+> **Zero Manual Git or Python Configuration Required:** The automated installer detects or downloads an isolated Python 3.10 environment side-by-side without touching your system-wide Python or PATH settings.
 
 ### Quickstart Installation
 1. Download **`amadeus-installer.zip`** from the [GitHub Releases](https://github.com/sehaj-notfound/Project-Amadeus/releases) page of this repository.

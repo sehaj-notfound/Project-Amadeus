@@ -1,7 +1,7 @@
 # Project Amadeus: Architecture & Engineering Specification (v0.1 Foundation)
 
 **Target Platform:** Windows 11 (x86_64, Build 22000+)  
-**Local Runtime Environments:** Python 3.11+ (`.venv`) & Rust 1.78+ / Tauri v2  
+**Local Runtime Environments:** Python 3.10 (`.venv`) & Rust 1.78+ / Tauri v2  
 **Target Persona:** Makise Kurisu Digital Consciousness Replica (*Steins;Gate* / *Steins;Gate 0*)  
 **Document Purpose:** Master Developer Specification & Engineering Manual for Core Contributors, Compiler Hackers, and AI Systems Engineers  
 
@@ -13,7 +13,7 @@ Project Amadeus is an engineering-grade, local-first artificial intelligence wor
 
 Unlike conventional chatbot wrappers or web-based agent frontends, Project Amadeus operates as a decoupled, multi-process desktop system combining:
 1. A hardware-accelerated **Rust / Tauri v2** visual novel workstation shell embedding 183 high-resolution Makise Kurisu 2D sprites, real-time WebGL canvas telemetry, and 60 FPS audio-driven viseme lip-flapping.
-2. A high-performance local **Python 3.11+ Core Daemon** hosting on-device neural speech recognition (FunASR SenseVoice-Small), a dual-language 44.1 kHz neural speech synthesis engine (fine-tuned Style-Bert-VITS2), and an anti-metallic audio DSP filter pipeline.
+2. A high-performance local **Python 3.10 Core Daemon** hosting on-device neural speech recognition (FunASR SenseVoice-Small), a dual-language 44.1 kHz neural speech synthesis engine (fine-tuned Style-Bert-VITS2), and an anti-metallic audio DSP filter pipeline.
 3. A headless, line-buffered NDJSON subprocess bridge into the **Google Antigravity CLI (`agy.exe`)**, granting Amadeus full autonomous tool execution authority across filesystem operations, terminal commands, web retrieval, and dynamic subagent task trees.
 
 This specification serves as the comprehensive reference manual for the v0.1 Foundation release. It details every architectural layer, communication contract, process lifecycle boundary, mathematical formulation, and persistence invariant governing the system.
@@ -64,7 +64,7 @@ flowchart TD
 | Component | Binary / Runtime | Memory Footprint | Role & Boundary |
 | :--- | :--- | :--- | :--- |
 | **Desktop Workstation** | `Amadeus.exe` (Rust / Tauri v2 / WebView2) | ~140 MB RAM | Bundles the complete frontend UI, WebGL backdrop, 183 visual novel sprites, and audio visualizer. Zero direct LLM access; communicates strictly via WebSocket. |
-| **Core Daemon** | `pythonw.exe` (`.venv`, Python 3.11+) | ~900 MB (CPU) / ~2.4 GB (CUDA) | Coordinates audio DSP, neural models, persistence, Win32 API hooks, and supervisor authority. Runs windowless in the background. |
+| **Core Daemon** | `pythonw.exe` (`.venv`, Python 3.10) | ~900 MB (CPU) / ~2.4 GB (CUDA) | Coordinates audio DSP, neural models, persistence, Win32 API hooks, and supervisor authority. Runs windowless in the background. |
 | **Cognitive Engine** | `agy.exe` (Antigravity CLI Subprocess) | ~80–120 MB RAM | Dispatched by the daemon with `--input-format stream-json --output-format stream-json`. Executes autonomous workflows and manages model context. |
 
 ### 2.2 Local WebSocket Protocol (`ws://127.0.0.1:8765`)
@@ -133,7 +133,7 @@ Project Amadeus provides a turnkey, 1-click bootstrap installation pipeline that
 ### 3.1 Preflight Environment Verification
 
 The bootstrap process begins via `install.bat`, which evaluates the host system before dispatching `install.py`:
-1. **Python Discovery & Side-by-Side Installation:** Probes `py -3.10` / `py -3.11`, standard `%LOCALAPPDATA%\Programs\Python`, and system PATH. If Python is absent, it silently deploys Python 3.10 side-by-side using `winget` or direct TLS 1.2 download from `python.org` without modifying existing global Python runtimes.
+1. **Python Discovery & Side-by-Side Installation:** Probes `py -3.10`, standard `%LOCALAPPDATA%\Programs\Python`, and system PATH. If Python is absent, it silently deploys Python 3.10 side-by-side using `winget` or direct TLS 1.2 download from `python.org` without modifying existing global Python runtimes.
 2. **Virtual Environment Isolation:** Builds an isolated `.venv` at the project root and enforces modern `pip>=24.0` via `ensurepip` to defuse wheel normalization errors.
 3. **Antigravity CLI Verification & Version Locking:** Verifies `agy` is present on PATH and executes `agy models` (15s timeout) to ensure an active session is authenticated. Project Amadeus is validated on `Google.AntigravityCLI` version **1.2.15** (`winget install Google.AntigravityCLI --version 1.2.15` or with `--force` to downgrade). To prevent silent breakage from upstream CLI changes, auto-updates should be disabled (`$env:AGY_CLI_DISABLE_AUTO_UPDATE="1"`), and any lingering `update.lock` files in `.gemini/antigravity-cli/` must be removed.
 
