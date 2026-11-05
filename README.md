@@ -59,7 +59,7 @@ The Amadeus desktop client is designed as a focused, dark-mode 3-column workstat
 
 | Column | Component | Purpose & Features |
 | :--- | :--- | :--- |
-| **1** | **Left Sidebar** | • **Session History:** Fast session switching with automatic `[AMADEUS]` conversation titles and timestamps.<br>• **Fast Search:** Modal launcher (`Ctrl+F` or `[🔍 Search Chats]`) to query all past conversations.<br>• **Dynamic Model Picker:** Hot-switch reasoning brains (Gemini Flash, Pro, Claude, etc.) while preserving active session state.<br>• **Workspace Switcher:** Select or switch working directories on the fly. |
+| **1** | **Left Sidebar** | • **Session History:** Fast session switching with automatic `[AMADEUS]` conversation titles and timestamps.<br>• **Fast Search:** Modal launcher (`[🔍 Search Chats]`) to query all past conversations.<br>• **Dynamic Model Picker:** Hot-switch reasoning brains (Gemini Flash, Pro, Claude, etc.) while preserving active session state.<br>• **Workspace Switcher:** Select or switch working directories on the fly. |
 | **2** | **Center Feed** | • **Visual Conversation Feed:** High-density Markdown formatting with copyable code blocks and rendered KaTeX formulas.<br>• **Collapsible Thinking Drawers:** Transparent inspection of the reasoning scratchpad before Kurisu speaks.<br>• **Execution Timeline Pills:** Dynamic status chips reflecting shell commands, tasks, and subagents.<br>• **Chat Input Bar:** Auto-expanding prompt input, attachment staging (`+`), and dynamic `@`-mention popup. |
 | **3** | **Right Stage** | • **Digital Void WebGL Canvas:** Dark petrol teal backdrop (`#040d12`) with animated telemetry trace bars, floating motes, and scanlines.<br>• **Makise Kurisu Avatar:** 183 high-resolution sprites responding to emotional cues and audio visemes at 60 FPS.<br>• **Smoked Glass Mute Button:** Frosted glass overlay to toggle spoken voice without breaking audio synchronization.<br>• **Detailed View Inspector Trigger:** Access comprehensive operations and telemetry logs. |
 
@@ -160,7 +160,7 @@ Amadeus can generate, edit, and inspect local images and documents directly from
   <img src="media/search_chats.png" alt="Full-Transcript Debounced Fast Search" width="100%" />
 </p>
 
-* **Debounced Global Search:** Press `Ctrl+F` or click **Search Chats** to query full JSONL transcripts across all past sessions.
+* **Debounced Global Search:** Click **Search Chats** in the left sidebar to query full JSONL transcripts across all past sessions.
 * **Instant Smooth Scrolling:** Clicking any search result switches to the conversation, smooth-scrolls to the exact message, and pulses the target card with a 2.8-second amber highlight.
 
 ---
